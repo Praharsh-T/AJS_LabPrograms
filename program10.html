@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>item collection management</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 20px;
+            background:lightgoldenrodyellow;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            width: 400px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: large;
+        }
+
+        input {
+            width: 150px;
+            
+            padding: 8px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 8px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            width: 400px;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 15px;
+        }
+        .footer{
+            position: fixed;
+            text-align: center;
+            padding: 30px;
+            left: 0px;
+            right: 0px;
+            bottom: 140px;
+            color:white;
+            background-color: black;
+    }
+    p{
+        text-align: center;
+    }
+    div{
+        
+        
+        text-align: center;
+    }
+    </style>
+
+</head>
+
+<body > 
+    <div ng-controller="ItemCtrl">
+        <h2>ITEM COLLECTION</h2>
+        <p>Total number of items:{{items.length}}</p>
+       <ul>
+        <li ng-repeat="item in items">
+            {{item.name}}
+            <button ng-click="removeItem(item)">Remove</button>
+        </li>
+       </ul>
+       <div>
+        <label >New Item</label>
+        <input type="text" ng-model="newItemName">
+        <button ng-click="addItem()">Add item</button>
+       </div>
+    </div>   
+    <script>
+        var app=angular.module('myApp', [])
+            app.controller('ItemCtrl', function ($scope) {
+                $scope.items = [
+                    { name: 'Apple' },
+                    { name: 'Banana' },
+                    { name: 'orange' },       
+                ];
+                $scope.newItemName='';
+                $scope.addItem=function(){
+                    if($scope.newItemName){
+                        $scope.items.push({name: $scope.newItemName});
+                        $scope.newItemName='';
+                    }
+                };
+                $scope.removeItem=function(item){
+                    var index=$scope.items.indexOf(item);
+                    if(index !== -1)
+                    {
+                        $scope.items.splice(index,1);
+                    }
+                  };
+
+               });
+               </script>
+    <div class="footer">
+        <p>&copy; 4CB21CS067 PRAHARSH T</p>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!-- Develop an Angular Js Program -->
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body{
+            background-color: antiquewhite;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: brown;
+
+        }
+        div{
+            text-align: center;
+            
+
+        }
+        table{
+            display: flex;
+            flex-direction: row;
+            text-align: center;
+            justify-content: center;
+            border-collapse: collapse ;
+            border-radius: 1000px;
+            justify-items: auto;
+
+        }
+        tr{
+            padding: 10px;
+        }
+        td{
+            padding: 10px;
+        }
+        th{
+            padding: 10px;
+        }
+    
+            .footer{
+        position: fixed;
+        text-align: center;
+        padding: 20px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        color:white;
+        background-color: black;
+    }
+    </style>
+</head>
+<body>
+    <div ng-controller="StudentController as ctrl">
+        <h2>
+            Student Details
+        </h2>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>CGPA</th>
+            </tr>
+            <tr ng-repeat="student in ctrl.students">
+                <td>{{ student.name | uppercase }}</td>
+                <td>{{ student.cgpa | number:2 }}</td>
+            </tr>
+        </table>
+     </div>
+<script>
+    var app =angular.module('myApp',[]);
+    app.controller('StudentController',function(){
+        this.students=[
+        {name:"Prithwin",cgpa:8.8},
+        {name:"Prithviraj",cgpa:9.0},
+        {name:"Vachan",cgpa:9.4},
+        {name:"Praharsh",cgpa:9.1}
+        ];
+    });
+</script>
+<div class="footer">
+    <p>This Page is Created &copy; 4CB21CS067 PRAHARSH T</p>
+</div>
+
+</body>
+</html>

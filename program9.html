@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="employeeApp">
+    <head>
+        <title><u>Employee List</u></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    </head>
+    
+    </style>
+    <body  ng-controller="EmployeeController">
+            <h2>Employee list</h2>
+            <div>
+                <label>Search by Name:</label>
+                <input type="text" ng-model="searchName"><br><br>
+            </div>
+            <div>
+                <label >Search By Salary:</label>
+                <input type="number" ng-model="searchSalaray"><br><br>
+            </div>
+            <button ng-click="searchEmployees()">Search</button>
+            <ul>
+                <li ng-repeat="employee in filteredEmployees">{{employee.name}}-{{employee.salary}}</li>
+            </ul>
+        <script>
+            var app=angular.module('employeeApp',[]);
+            app.controller('EmployeeController' , function($scope){
+                $scope.employees = [
+                    {name:"John Doe",salary:"50000"},
+                    {name:"John Smith",salary:"60000"},
+                    {name:"Bob Johnson",salary:"70000"},
+                    {name:"Alice williams",salary:"55000"},
+                    {name:"John smith",salary:"80000"},
+                ]
+                $scope.filteredEmployees=$scope.employees;
+                $scope.searchEmployees = function(){
+                    $scope.filteredEmployees = $scope.employees.filter((employee)=>{
+                        return (
+                            (!$scope.searchName || employee.name.toLowerCase().includes($scope.searchName.toLowerCase())) && (!$scope.searchSalaray || employee.salary == $scope.searchSalaray)
+                        )
+                       
+                    });
+                }
+            });                          
+        </script>  
+    </body>
+</html>

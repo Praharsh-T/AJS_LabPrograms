@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="userApp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AngularJS CRUD Application</title>
+    <!-- <style>
+        *{
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #ece06d;
+        }
+
+        ul li{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 10px;
+            background-color: #524b4b;
+            border-bottom: 2px solid gray;
+            color: #ffffff;
+            margin-bottom: 10px;
+            border-radius: 15px;
+          }
+          
+          button{
+            height: 30px;
+            border-radius: 10px;
+            border: none;
+            background-color: #524b4b;
+            color: #ffffff;
+            padding: 5px 10px;
+        }
+        .container{
+            padding: 30px;
+            border-radius: 15px;
+            background-color: #d6cece;
+            display: flex;
+            width: auto;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        table{
+            border-collapse: collapse;
+            border-color: #da8ee9;
+            border-radius: 30px;
+            width: 60%;
+        }
+        table td,
+        table th{
+            padding: 10px;
+            text-align: center;
+        }
+        .footer{
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            color: #eee;
+            background-color: #0e0c0c;
+        }
+    </style> -->
+  </head>
+  <body ng-controller="userController">
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"
+    ></script>
+    <h1>User Management</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in users">
+          <td>{{user.name}}</td>
+          <td>{{user.email}}</td>
+          <td>
+            <button ng-click="editUser(user)">Edit</button>
+            <button ng-click="deleteUser(user)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h2>Create User</h2>
+    <div><input type="text" ng-model="newUser.name" placeholder="Name">
+        <input type="email" ng-model="newUser.email" placeholder="Email">
+        <button ng-click="createUser()">Create</button>
+    </div>
+    <hr>
+    <h2>Edit User</h2>
+    <div><input type="text" ng-model="editedUser.name" placeholder="name">
+        <input type="email" ng-model="editedUser.email" placeholder="email">
+      
+        <button ng-click="updateUser()">update</button>
+    </div>
+    <script>
+        angular.module('userApp',[]).controller('userController',function($scope){
+            $scope.users=[
+            {name:"Praharsh",email:"praharsh@gmail.com"},
+                {name:"Shreekar",email:"shreekar@gmail.com"},
+                {name:"Pavan",email:"pavan@gmail.com"},
+            ];
+            $scope.newUser={};
+            $scope.editUser = (user)=>{
+                $scope.editedUser=user;
+            } 
+            $scope.deleteUser = (user)=>{
+                $scope.users.splice($scope.users.indexOf(user),1);
+            }
+            $scope.createUser=()=>{
+                $scope.users.push($scope.newUser);
+                $scope.newUser={};
+            }
+           
+            $scope.updateUser = ()=>{
+                $scope.editedUser={};
+            }
+           
+        });
+    </script>
+    <div class="footer">&#169 4CB21CS067 PRAHARSH </div>
+
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Angular JS Shopping List App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!-- <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+      }
+
+      #box1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        background-color: azure;
+        border: 1px solid #0c0c0c;
+        padding: 20px 20px;
+        border-radius: 50px;
+      }
+
+      footer {
+        background-color: #0d0d0d;
+        color: aliceblue;
+        height: bottom 100px;
+        padding: 40px;
+        bottom: 10px;
+        text-align: center;
+        width: 100%;
+      }
+    </style> -->
+  </head>
+  <body>
+    <div id="box1" ng-app="myApp" ng-controller="myCtrl">
+      <h1>Shopping List App</h1>
+      <ul>
+        <li ng-repeat="item in items"><b>{{item}}</b></li>
+      </ul>
+      <input type="text" ng-model="NewItem" placeholder="Enter New item" />
+      <br />
+      <button ng-click="addItem()">Add Item</button>
+      <button ng-click="removeItem()">Remove Item</button>
+    </div>
+
+    <footer>Page Created by 4CB21CS067</footer>
+
+    <script>
+      var app = angular.module("myApp", []);
+      app.controller("myCtrl", function ($scope) {
+        $scope.items = ["Bread", "Cheese", "Milk"];
+
+        $scope.addItem = function () {
+          $scope.items.push($scope.NewItem);
+          $scope.NewItem = "";
+        };
+
+        $scope.removeItem = function (index) {
+          $scope.items.splice(index, 1);
+        };
+      });
+    </script>
+  </body>
+</html>
